@@ -16,6 +16,15 @@ $data = DB::table('tbl_customer')
                 ->where('customer_id', '=', 1) 
                 ->get();
 
+function index() {
+     $data = DB::table('city')
+       ->join('state', 'state.state_id', '=', 'city.state_id')
+       ->join('country', 'country.country_id', '=', 'state.country_id')
+       ->select('country.country_name', 'state.state_name', 'city.city_name')
+       ->get();
+     return view('join_table', compact('data'));
+    }
+
 ============================================================================
 $data = DB::table('tbl_customer')
             ->join ......  //Im not sure about this 
